@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap JavaScript (optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        /* Custom CSS styles */
+       /* Custom CSS styles */
+.card {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    width: 50%; /* Set card width to 50% of viewport width */
+    margin: auto; /* Center the card */
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.card-body .mb-3 {
+    margin-bottom: 15px;
+}
+
+.card-body label {
+    font-weight: bold;
+}
+
+.card-body input[type="text"],
+.card-body input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.card-body .btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.card-body .btn:hover {
+    background-color: #0056b3;
+}
+
+    </style>
+</head>
+<body style="background-color: black;">
+    <main>
+        {% for message in messages %}
+                {% if message.tags == 'error' %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endif %}
+                
+                {% if message.tags == 'success' %}
+                    <div class="alert alert-success" role="alert">
+                        {{ message }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        <div class="px-5 pt-5">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Login</h5>
+                <form action="{% url 'login' %}" method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Username or email address <span>*</span></label>
+                        <input id="name" type="text" name="username" class="form-control" required placeholder="Enter Username">
+                    </div>
+                    <div class="mb-3">
+                        <label for="pass" class="form-label">Password <span>*</span></label>
+                        <input id="pass" name="password" type="password" class="form-control" required placeholder="Enter password...">
+                    </div>
+                    <div class="login-action mb-3">
+                        <p>Don't have an account? <span><a href="{% url 'register' %}">Register</a></span></p>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Log in</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    
+    </main>
+</body>
+</html>
+    
+
+
+
+	

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <style>
+        .card {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body style="background-color: black;">
+<div class="container">
+    
+<div class="card">
+    <div class="card-body">
+                <h5 class="card-title">Person Information</h5>
+                <ul class="list-group list-group-flush">
+        
+        <li><strong>Name:</strong> {{ persons.name }}</li>
+        <li><strong>Place:</strong> {{ persons.place }}</li>
+        <li><strong>Height:</strong> {{ persons.height }}</li>
+        <li><strong>Weight:</strong> {{ persons.weight }}</li>
+       
+    </ul>
+    </div>
+</div>
+<a href="{% url 'person_list' %}" class="btn btn-primary mt-3">Back to Person List</a>
+</div>
+
+</body>
+</html>
+
+              

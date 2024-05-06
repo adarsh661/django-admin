@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Detail</title>
+    <style>
+        .card {
+            width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+        }
+        .profile-image {
+            display: block;
+            margin: 0 auto;
+            border-radius: 50%;
+            max-width: 200px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        .profile-info {
+            margin-bottom: 20px;
+        }
+        .profile-info p {
+            margin: 5px 0;
+        }
+        .button1 {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: green; /* Green */
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+        }
+        .button2 {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: red; /* Green */
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body style="background-color: black;">
+    <div class="card">
+        <h1 style="text-align: center;">Profile Detail</h1>
+        {% if profile.image %}
+        <img src="{{ profile.image.url }}" alt="Profile Image" class="profile-image">
+        {% else %}
+        <p style="color: red;">There is no image to show</p>
+        {% endif %}
+        <div class="profile-info">
+            <p><strong>Name:</strong> {{ profile.name }}</p> 
+            <p><strong>Email:</strong> {{ profile.email }}</p>
+            <p><strong>Address:</strong> {{ profile.address }}</p>
+            <p><strong>Phone:</strong> {{ profile.phone }}</p>
+            <p><strong>Gender:</strong> {{ profile.get_gender_display }}</p>
+            <p><strong>Education:</strong></p>
+            <ul>
+                {% for education in educations %}
+                <li>{{ education.qualification }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <a href="{% url 'profile_edit' profile.id %}" class="button1">Edit</a>
+        <a href="{% url 'delete_profile' profile.id %}" class="button2">Delete</a>
+    </div>
+</body>
+</html>

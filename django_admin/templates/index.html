@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index Page</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+       
+        .custom-container {
+            max-width: 800px; 
+            margin: 0 auto;
+            padding: 15px; 
+        }
+        .button{
+            background-color: tomato;
+        }
+       
+    </style>
+</head>
+<body style="background-color: black;">
+    <main>
+        {% for message in messages %}
+            {% if message.tags == 'error' %}
+                <div class="alert alert-danger" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endif %}
+            
+            {% if message.tags == 'success' %}
+                <div class="alert alert-success" role="alert">
+                    {{ message }}
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+
+        <h1 style="color: white;">{{user.username}}<span style="font-size: small;"> <b>(user)</b></span></h1>
+
+<!-- Add this where you want the logout button to be -->
+{% if user.is_authenticated %}
+<form action="{% url 'logout' %}" method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Logout</button>
+</form>
+{% endif %}
+
+        <a href="{% url 'login' %}" class="btn btn-primary" style="margin-left: 1150px;"> login</a>
+        <a href=" {% url 'register' %}" class="btn btn-success">register</a>
+
+
+       
+
+    
+    <!-- {% for message in messages %}
+    <div class="custom-container">
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <h1>{{ message }}</h1>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div> -->
+        
+             
+        
+        
+    {% endfor %}
+<div class="container">
+    <!-- Profiles Card -->
+    <div class="card mt-4">
+        <div class="card-header">
+            <b>Profiles</b>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for profile in profiles %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'profile_view' profile.id %}">
+                                {{ profile.name }}
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{% url 'profile_edit' profile.id %}" class="btn btn-primary btn-sm">Edit</a>
+                            <a href="{% url 'delete_profile' profile.id %}" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a href="{% url 'profile_add' %}" class="btn btn-success">Add Profile</a>
+        </div>
+    </div>
+
+    <!-- Products Card -->
+    <div class="card mt-4">
+        <div class="card-header">
+           <b>Products</b> 
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in products %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'product_view' product.id %}">
+                                {{ product.name }}
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{% url 'product_edit' product.id %}" class="btn btn-primary btn-sm">Edit</a>
+                            <a href="{% url 'delete_product' product.id %}" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a href="{% url 'product_add' %}" class="btn btn-success">Add Product</a>
+        </div>
+    </div>
+
+    <!-- Persons Card -->
+    <div class="card mt-4">
+        <div class="card-header">
+           <b>Persons</b> 
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for person in persons %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'person_view' person.id %}">
+                                {{ person.name }}
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{% url 'person_edit' person.id %}" class="btn btn-primary btn-sm">Edit</a>
+                            <a href="{% url 'delete_person' person.id %}" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a href="{% url 'person_add' %}" class="btn btn-success">Add Person</a>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

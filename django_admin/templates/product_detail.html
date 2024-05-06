@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <style>
+        .card {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body style="background-color: black;">
+<div class="container">
+    
+<div class="card">
+    <div class="card-body">
+                <h5 class="card-title">Product Information</h5>
+                <ul class="list-group list-group-flush">
+        
+        <li><strong>Name:</strong> {{ products.name }}</li>
+        <li><strong>Email:</strong> {{ products.email }}</li>
+        <li><strong>Address:</strong> {{ products.address }}</li>
+        <li><strong>Phone:</strong> {{ products.phone }}</li>
+       
+    </ul>
+    </div>
+</div>
+<a href="{% url 'product_list' %}" class="btn btn-primary mt-3">Back to Product List</a>
+</div>
+
+</body>
+</html>
+
+              
